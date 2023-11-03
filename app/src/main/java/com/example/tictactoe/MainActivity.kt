@@ -50,19 +50,6 @@ class MainActivity : AppCompatActivity() {
         button.isEnabled = false
     }
     fun checkWin(buttons: Array<Button>) {
-        // Check tie
-        var tie = true
-        for(button in buttons) {
-            if(button.text == "") {
-                tie = false
-                break
-            }
-        }
-        if(tie) {
-            val turnDisplay = findViewById<TextView>(R.id.TurnDisplay)
-            turnDisplay.text = "It's a tie!"
-            return
-        }
         // Check vertical
         for(i in 0..2) {
             if(buttons[i].text == buttons[i+3].text && buttons[i].text == buttons[i+6].text) {
@@ -105,6 +92,19 @@ class MainActivity : AppCompatActivity() {
                 win("O", buttons)
                 return
             }
+        }
+        // Check tie
+        var tie = true
+        for(button in buttons) {
+            if(button.text == "") {
+                tie = false
+                break
+            }
+        }
+        if(tie) {
+            val turnDisplay = findViewById<TextView>(R.id.TurnDisplay)
+            turnDisplay.text = "It's a tie!"
+            return
         }
     }
     fun win(winner: String, buttons: Array<Button>) {
